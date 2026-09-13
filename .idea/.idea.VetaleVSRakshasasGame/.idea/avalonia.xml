@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AvaloniaProject">
+    <option name="projectPerEditor">
+      <map>
+        <entry key="VetaleVSRakshasasGame/App.axaml" value="VetaleVSRakshasasGame/VetaleVSRakshasasGame.csproj" />
+        <entry key="VetaleVSRakshasasGame/Import/Export/VetaleDesignWindow.axaml" value="VetaleVSRakshasasGame/VetaleVSRakshasasGame.csproj" />
+        <entry key="VetaleVSRakshasasGame/MainWindow.axaml" value="VetaleVSRakshasasGame/VetaleVSRakshasasGame.csproj" />
+        <entry key="VetaleVSRakshasasGame/Scenes/Level1.axaml" value="VetaleVSRakshasasGame/VetaleVSRakshasasGame.csproj" />
+        <entry key="VetaleVSRakshasasGame/Scenes/Level2.axaml" value="VetaleVSRakshasasGame/VetaleVSRakshasasGame.csproj" />
+      </map>
+    </option>
+  </component>
+</project>

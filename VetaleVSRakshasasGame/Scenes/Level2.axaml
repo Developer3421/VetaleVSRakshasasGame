@@ -1,0 +1,25 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:game="clr-namespace:VetaleVSRakshasasGame.Game"
+             x:Class="VetaleVSRakshasasGame.Scenes.Level2">
+  <Grid RowDefinitions="Auto,*,Auto">
+    <!-- Шапка рівня -->
+    <Grid Grid.Row="0" Background="#AA000000" ColumnDefinitions="Auto,*" Margin="0">
+      <TextBlock Grid.Column="0" Text="РІВЕНЬ 2 — ОБОРОНА" FontSize="20" FontWeight="Black"
+                 Foreground="#FFD9A8" VerticalAlignment="Center" Margin="12,8"/>
+      <TextBlock Grid.Column="1" Text="Ціль мишею, клік — постріл. Жовті стають на дистанції і ведуть вогонь."
+                 FontSize="13" Foreground="LightGray" VerticalAlignment="Center" Margin="12,8"/>
+    </Grid>
+
+    <!-- Нативний хост: MonoGame малює прямо тут, всередині сірого вікна -->
+    <game:GameHostControl x:Name="GameHost" Grid.Row="1"/>
+
+    <!-- Низ: статус + назад -->
+    <Grid Grid.Row="2" Background="#AA000000" ColumnDefinitions="*,Auto">
+      <TextBlock Grid.Column="0" x:Name="StatusText" Foreground="OrangeRed" FontSize="14"
+                 VerticalAlignment="Center" Margin="12,6" Text="Рівень 2"/>
+      <Button Grid.Column="1" x:Name="BackButton" Content="← Меню" Margin="0,4,12,4"
+              Click="OnBackClick"/>
+    </Grid>
+  </Grid>
+</UserControl>

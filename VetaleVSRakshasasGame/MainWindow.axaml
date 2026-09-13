@@ -1,0 +1,156 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:scenes="clr-namespace:VetaleVSRakshasasGame.Scenes"
+        x:Class="VetaleVSRakshasasGame.MainWindow"
+        Title="Vetale VS. Rakshasas"
+        Width="1282" Height="843"
+        CanResize="False"
+        SystemDecorations="None"
+        WindowStartupLocation="CenterScreen">
+  <Window.Resources>
+    <LinearGradientBrush x:Key="GrayGradient" StartPoint="0,0" EndPoint="1,1">
+      <GradientStop Color="#FFE0E0E0" Offset="0"/>
+      <GradientStop Color="#FFD0D0D0" Offset="0.3"/>
+      <GradientStop Color="#FFC5C5C5" Offset="0.7"/>
+      <GradientStop Color="#FFC0C0C0" Offset="1"/>
+    </LinearGradientBrush>
+  </Window.Resources>
+
+  <Window.Styles>
+    <Style Selector="Button.imgbtn">
+      <Setter Property="Background" Value="Transparent"/>
+      <Setter Property="BorderThickness" Value="0"/>
+      <Setter Property="Padding" Value="0"/>
+      <Setter Property="Cursor" Value="Hand"/>
+    </Style>
+    <Style Selector="Button.imgbtn:pointerover /template/ ContentPresenter">
+      <Setter Property="Background" Value="Transparent"/>
+      <Setter Property="Opacity" Value="0.85"/>
+    </Style>
+    <Style Selector="Button.imgbtn:pressed /template/ ContentPresenter">
+      <Setter Property="Opacity" Value="0.7"/>
+    </Style>
+    <!-- Лінія керування вікном за прикладом Import/Export/VetaleDesignWindow -->
+    <Style Selector="Button.window-control">
+      <Setter Property="Background" Value="Transparent"/>
+      <Setter Property="BorderThickness" Value="0"/>
+      <Setter Property="Padding" Value="0"/>
+      <Setter Property="Width" Value="46"/>
+      <Setter Property="Height" Value="40"/>
+      <Setter Property="Cursor" Value="Hand"/>
+    </Style>
+    <Style Selector="Button.window-control:pointerover">
+      <Setter Property="Background" Value="#40FFFFFF"/>
+    </Style>
+    <Style Selector="Button.window-control.close:pointerover">
+      <Setter Property="Background" Value="#C0FF5C5C"/>
+    </Style>
+  </Window.Styles>
+
+  <!-- Тонка рамка замість стандартної -->
+  <Border BorderThickness="1" BorderBrush="#5A0E0E" Background="Black">
+  <Grid RowDefinitions="40,*">
+    <!-- Кастомний заголовок вікна: тільки Згорнути і Закрити -->
+    <Border Grid.Row="0" Background="{StaticResource GrayGradient}" Padding="12,0,0,0"
+            x:Name="TitleBar" Cursor="Hand"
+            PointerPressed="OnTitleBarPointerPressed">
+      <Grid ColumnDefinitions="*,Auto" Background="Transparent">
+        <!-- Тиснена назва гри -->
+        <Grid Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center">
+          <TextBlock Text="VETALE VS. RAKSHASAS" FontSize="15" FontWeight="Black"
+                     LetterSpacing="3" Foreground="#80FFFFFF"
+                     HorizontalAlignment="Left" VerticalAlignment="Center"
+                     Margin="0,1,0,0"/>
+          <TextBlock Text="VETALE VS. RAKSHASAS" FontSize="15" FontWeight="Black"
+                     LetterSpacing="3" Foreground="#5A0E0E"
+                     HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        </Grid>
+        <StackPanel Grid.Column="1" Orientation="Horizontal"
+                    VerticalAlignment="Stretch">
+          <Button Classes="window-control" ToolTip.Tip="Згорнути" Click="OnMinClick">
+            <Image Source="avares://VetaleVSRakshasasGame/Assets/Menu/chrome_min.png"
+                   Width="16" Height="16" Stretch="Uniform"/>
+          </Button>
+          <Button Classes="window-control close" ToolTip.Tip="Закрити" Click="OnCloseClick">
+            <Image Source="avares://VetaleVSRakshasasGame/Assets/Menu/chrome_close.png"
+                   Width="16" Height="16" Stretch="Uniform"/>
+          </Button>
+        </StackPanel>
+      </Grid>
+    </Border>
+
+    <!-- Сторінка головного меню: цілком ховається під сторінкою рівня -->
+    <Grid x:Name="MenuView" Grid.Row="1" RowDefinitions="Auto,*,Auto">
+      <Image Grid.Row="0" Grid.RowSpan="3"
+             Source="avares://VetaleVSRakshasasGame/Assets/Menu/bg_lava.png"
+             Stretch="UniformToFill" StretchDirection="Both"
+             HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+
+      <!-- Векторний заголовок меню -->
+      <Grid Grid.Row="0" Margin="0,16,0,8" HorizontalAlignment="Center">
+        <TextBlock Text="VETALE VS. RAKSHASAS" FontSize="60" FontWeight="Black"
+                   Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center"
+                   Margin="4,4,0,0"/>
+        <TextBlock Text="VETALE VS. RAKSHASAS" FontSize="60" FontWeight="Black"
+                   Foreground="#FFD9A8" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+      </Grid>
+
+      <!-- Кнопки меню -->
+      <Grid Grid.Row="1" Margin="40,8,40,8">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="*"/>
+          <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <UniformGrid Grid.Column="0" Columns="2" Rows="2"
+                     HorizontalAlignment="Center" VerticalAlignment="Center">
+          <Button Classes="imgbtn" x:Name="BtnLang" ToolTip.Tip="Мова / Language" Click="OnLangClick" Margin="8">
+            <Image Source="avares://VetaleVSRakshasasGame/Assets/Menu/btn_lang_en.png"
+                   Width="170" Stretch="Uniform"/>
+          </Button>
+          <Button Classes="imgbtn" ToolTip.Tip="Facebook" Click="OnStubClick" Margin="8">
+            <Image Source="avares://VetaleVSRakshasasGame/Assets/Menu/btn_facebook.png"
+                   Width="170" Stretch="Uniform"/>
+          </Button>
+          <Button Classes="imgbtn" x:Name="BtnMusic" ToolTip.Tip="Музика" Click="OnStubClick" Margin="8">
+            <Image Source="avares://VetaleVSRakshasasGame/Assets/Menu/btn_music.png"
+                   Width="170" Stretch="Uniform"/>
+          </Button>
+          <Button Classes="imgbtn" x:Name="BtnSound" ToolTip.Tip="Звук" Click="OnStubClick" Margin="8">
+            <Image Source="avares://VetaleVSRakshasasGame/Assets/Menu/btn_sound.png"
+                   Width="170" Stretch="Uniform"/>
+          </Button>
+        </UniformGrid>
+
+        <StackPanel Grid.Column="1" Spacing="10"
+                    HorizontalAlignment="Center" VerticalAlignment="Center">
+          <Button Classes="imgbtn" Click="OnNewGameClick">
+            <Image Source="avares://VetaleVSRakshasasGame/Assets/Menu/btn_new_game.png"
+                   Width="300" Stretch="Uniform"/>
+          </Button>
+          <Button Classes="imgbtn" Click="OnContinueClick">
+            <Image Source="avares://VetaleVSRakshasasGame/Assets/Menu/btn_continue.png"
+                   Width="300" Stretch="Uniform"/>
+          </Button>
+          <Button Classes="imgbtn" Click="OnSaveClick">
+            <Image Source="avares://VetaleVSRakshasasGame/Assets/Menu/btn_save.png"
+                   Width="300" Stretch="Uniform"/>
+          </Button>
+          <Button Classes="imgbtn" Click="OnWhatsNewClick">
+            <Image Source="avares://VetaleVSRakshasasGame/Assets/Menu/btn_whatsnew.png"
+                   Width="300" Stretch="Uniform"/>
+          </Button>
+        </StackPanel>
+      </Grid>
+
+      <Border Grid.Row="2" Background="#AA000000" Padding="12,6">
+        <TextBlock x:Name="StatusText" Foreground="OrangeRed" FontSize="14"
+                   Text="Головне меню"/>
+      </Border>
+    </Grid>
+
+    <!-- Сторінка рівня 2: перекриває меню цілком -->
+    <scenes:Level2 x:Name="LevelView" Grid.Row="1" IsVisible="False"/>
+  </Grid>
+  </Border>
+</Window>
